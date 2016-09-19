@@ -3,11 +3,26 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<display-name>Lgworknet</display-name>
+	<display-name>swm</display-name>
+	
+	<context-param>
+	  <param-name>contextConfigLocation</param-name> 
+      <param-value>classpath:spring-common-config.xml</param-value> 
+	</context-param> 
+	<listener>  
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+	</listener>
+	
+	
 	<servlet> 
         <servlet-name>swm</servlet-name> 
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
-        <load-on-startup>1</load-on-startup> 
+        <!-- <load-on-startup>1</load-on-startup> --> 
+        <!-- 这样初始化之后就不会读swm-servlet.xml 默认是 -->
+        <init-param>
+        	<param-name>contextConfigLocation</param-name>
+        	<param-value>/WEB-INF/classes/spring-servlet-config.xml</param-value>
+        </init-param>
     </servlet> 
     <servlet-mapping> 
         <servlet-name>swm</servlet-name> 
