@@ -7,12 +7,11 @@
 	
 	<context-param>
 	  <param-name>contextConfigLocation</param-name> 
-      <param-value>classpath:spring-common-config.xml</param-value> 
+      <param-value>classpath:spring/spring-common-config.xml</param-value> 
 	</context-param> 
 	<listener>  
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
 	</listener>
-	
 	
 	<servlet> 
         <servlet-name>swm</servlet-name> 
@@ -23,7 +22,7 @@
         	<param-name>contextConfigLocation</param-name>
         	<param-value>/WEB-INF/classes/spring-servlet-config.xml</param-value>
         </init-param>
-    </servlet> 
+    </servlet>  
     <servlet-mapping> 
         <servlet-name>swm</servlet-name> 
         <url-pattern>/</url-pattern> 
@@ -40,6 +39,15 @@
 	<filter-mapping> 
 	    <filter-name>CharacterEncodingFilter</filter-name> 
 	    <url-pattern>/*</url-pattern> 
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>HelloWorldFilter</filter-name>
+		<filter-class>swm.filter.HelloWorldFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HelloWorldFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
     
     
