@@ -29,7 +29,8 @@ public class HelloWorldController{
 		System.out.println("toHelloWorld method");
 		return "HelloWorld";
 	}
-	HelloWorldController(){
+	
+	/*HelloWorldController(){
 		System.out.println("HelloWorldController is true!");
-	}
+	}*/
 }
