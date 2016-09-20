@@ -21,6 +21,9 @@ public class HelloWorldFilter implements Filter {
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
+		System.out.println(arg0);
+		System.out.println(arg1);
+		System.out.println(arg2);
 		System.out.println("doFilter method");
 	}
 

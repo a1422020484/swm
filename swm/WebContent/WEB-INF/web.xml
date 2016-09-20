@@ -28,6 +28,15 @@
         <url-pattern>/</url-pattern> 
     </servlet-mapping>
     
+    <servlet>
+    	<servlet-name>HelloWorldServlet</servlet-name>
+    	<servlet-class>swm.servlet.HelloWorldServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>HelloWorldServlet</servlet-name>
+    	<url-pattern>/toHelloWorldServlet</url-pattern>
+    </servlet-mapping>
+    
     <filter> 
 	    <filter-name>CharacterEncodingFilter</filter-name> 
 	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> 
@@ -41,14 +50,15 @@
 	    <url-pattern>/*</url-pattern> 
 	</filter-mapping>
 	
-	<filter>
+	<!--没有什么卵用的过滤器  -->
+	<!-- <filter>
 		<filter-name>HelloWorldFilter</filter-name>
 		<filter-class>swm.filter.HelloWorldFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>HelloWorldFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
     
     
 	<welcome-file-list>
