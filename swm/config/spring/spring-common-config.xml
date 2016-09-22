@@ -17,15 +17,19 @@
 		
 		<!-- <bean id="BeanContextTest" class="swm.helloworld.BeanContextTest"></bean> -->
 		<!-- <bean id="ContentTypeTest" class="swm.httpTest.ContentTypeTest"></bean> -->
-		<bean id="/helloCache" class="swm.helloworld.HelloWorldCacheController">
+		<!-- <bean id="/helloCache" class="swm.helloworld.HelloWorldCacheController">
 			<property name="cacheSeconds" value="5"></property>
-		</bean>
+		</bean> -->
 		<!-- 可以扫描controller、service、... 这里让扫描controller，指定controller的包 -->
 		<context:component-scan base-package="swm.helloworld">
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 		</context:component-scan>
 		<context:component-scan base-package="swm.httpTest">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+		</context:component-scan>
+		<context:component-scan base-package="swm">
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 		</context:component-scan>
@@ -59,5 +63,47 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven> -->
 		
+		<!-- 加载db.properties文件中的内容，db.properties文件中key命名要有一定的特殊规则 -->
+		<context:property-placeholder location="classpath:db.properties" />
 		
+		<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+		<!-- <context:component-scan base-package="com.zondy">
+			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+			<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+		</context:component-scan> -->
+	
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+			destroy-method="close">
+			<property name="driverClassName" value="${jdbc.driver}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+			<property name="maxActive" value="30" />
+			<property name="maxIdle" value="5" />
+		</bean>
+		
+				<!-- 事务管理器 对mybatis操作数据库事务控制，spring使用jdbc的事务控制类-->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<!-- 数据源 dataSource在applicationContext-dao.xml中配置了 -->
+			<property name="dataSource" ref="dataSource"/>
+		</bean>
+		
+		
+		<!-- 通知 -->
+		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+			<tx:attributes>
+				<!-- 传播行为 -->
+				<tx:method name="save*" propagation="REQUIRED"/>
+				<tx:method name="delete*" propagation="REQUIRED"/>
+				<tx:method name="insert*" propagation="REQUIRED"/>
+				<tx:method name="update*" propagation="REQUIRED"/>
+				<tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+				<tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+				<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+			</tx:attributes>
+		</tx:advice>
+		<!-- aop -->
+		<aop:config>
+			<aop:advisor advice-ref="txAdvice" pointcut="execution(* swm.service.impl.*.*(..))"/>
+		</aop:config>
 		</beans>

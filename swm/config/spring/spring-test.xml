@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd ">
+	<!-- aop测试 经典的方式-->
+		<bean id="human" class="swm.aopSleep.Human"></bean>
+		<bean id="sleepHelper" class="swm.aopSleep.SleepHelper"></bean>
+		<!-- 定义切点 -->
+		<bean id="sleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+			<property name="pattern" value=".*sleep"></property>
+		</bean>
+		<!-- 切点仅仅是定义了故事发生的地点，还有故事发生的时间以及最重要的故事的内容,就是通知了，我们需要把通知跟切点结合起来，我们要使用的通知者是: -->
+		<bean id="sleepHelperAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		     <property name="advice" ref="sleepHelper"/>
+		     <property name="pointcut" ref="sleepPointcut"/>
+		</bean>
+		<!-- 切入点和通知都配置完成，接下来该调用ProxyFactoryBean产生代理对象了 -->
+		<bean id="humanProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="target" ref="human"></property>
+			<property name="interceptorNames" value="sleepHelperAdvisor" />
+     		<property name="proxyInterfaces" value="swm.aopSleep.Sleepable" />
+		</bean>
+</beans>
