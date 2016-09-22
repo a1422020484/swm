@@ -21,7 +21,7 @@
 			<property name="cacheSeconds" value="5"></property>
 		</bean> -->
 		<!-- 可以扫描controller、service、... 这里让扫描controller，指定controller的包 -->
-		<context:component-scan base-package="swm.helloworld">
+		<!-- <context:component-scan base-package="swm.helloworld">
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 		</context:component-scan>
@@ -29,6 +29,14 @@
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 		</context:component-scan>
+		<context:component-scan base-package="swm.controller">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+		</context:component-scan>
+		<context:component-scan base-package="swm.service">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+		</context:component-scan> -->
 		<context:component-scan base-package="swm">
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
@@ -65,12 +73,7 @@
 		
 		<!-- 加载db.properties文件中的内容，db.properties文件中key命名要有一定的特殊规则 -->
 		<context:property-placeholder location="classpath:db.properties" />
-		
-		<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-		<!-- <context:component-scan base-package="com.zondy">
-			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-			<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-		</context:component-scan> -->
+
 	
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 			destroy-method="close">
@@ -84,7 +87,6 @@
 		
 				<!-- 事务管理器 对mybatis操作数据库事务控制，spring使用jdbc的事务控制类-->
 		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-			<!-- 数据源 dataSource在applicationContext-dao.xml中配置了 -->
 			<property name="dataSource" ref="dataSource"/>
 		</bean>
 		
@@ -105,5 +107,23 @@
 		<!-- aop -->
 		<aop:config>
 			<aop:advisor advice-ref="txAdvice" pointcut="execution(* swm.service.impl.*.*(..))"/>
+			<!-- <aop:pointcut expression="execution(* swm.service.impl.*.*(..))" id="service"/> -->
 		</aop:config>
+		
+		<!-- sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 加载mybatis的全局配置文件 -->
+		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
+		<property name="mapperLocations" value="classpath*:mybatis/*Mapper.xml" />
+	</bean>
+	<!-- mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
+		<property name="basePackage" value="swm.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+		
+		
 		</beans>
