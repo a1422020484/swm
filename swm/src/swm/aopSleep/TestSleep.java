@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSleep {
 
 	public static void main(String[] args){
-        ApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-common-config.xml");
+        ApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-aopSleep.xml");
         Sleepable sleeper = (Sleepable)appCtx.getBean("humanProxy");
         sleeper.sleep();
     }
