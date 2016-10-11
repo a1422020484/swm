@@ -42,8 +42,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="D:/tomcat/tomcat-8yyy/tomcat8-yyy/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/tomcat/tomcat-8yyy/tomcat8-yyy/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="D:/tomcat/tomcat-8yyy/tomcat8-yyy/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
