@@ -38,7 +38,12 @@
 			<property name="suffix" value=".jsp" />
 		</bean>
 		<!-- <bean name="/hello" class="swm.helloworld.HelloWorldController"/> -->
-		
+		<!-- 静态资源解析 包括 ：js、css、img、.. -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/plugins/" mapping="/plugins/**" />
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/res/" mapping="/res/**" />
 	
 	<!-- 使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置 mvc:annotation-driven默认加载很多的参数绑定方法， 
 		比如json转换解析器就默认加载了，如果使用mvc:annotation-driven不用配置上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter 
