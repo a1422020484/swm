@@ -32,7 +32,7 @@ function initPie(){
             type: 'pie',
             name: 'Browser share',
             data: [
-                
+                ['test',15.2],
                 {
                     name: 'asdf',
                     y: 122.800,

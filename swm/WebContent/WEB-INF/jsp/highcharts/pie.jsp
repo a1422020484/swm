@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${ctx}/plugins/highCharts/highcharts.js"></script>
 <script type="text/javascript" src="${ctx}/plugins/highCharts/exporting.js"></script>
 <script type="text/javascript" src="${ctx}/js/highcharts/highcharts.js"></script>
-<title>Insert title here</title>
+<title>饼状图 test</title>
 </head>
 <body>
 	<div id="container" style="min-width:400px;height:400px"></div>
