@@ -16,4 +16,28 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
 		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd ">
 		<bean id ="helloworld" class="swm.ioc.HelloWorld"></bean>
+		
+		<bean id="hello" class="swm.main.Test">
+			<property name="mp">
+			            <map>
+						    <entry key="22">
+						    	<list>
+								    <value>haha1</value>
+								    <value>haha2</value>
+								   </list>
+						    </entry>
+						    <entry key="33">
+						    	
+						    </entry>
+						</map>
+			 </property>
+		</bean>
+		<bean id="list" class="swm.main.ListTest">
+			<property name="ls">
+			   <list>
+			    <value>haha1</value>
+			    <value>haha2</value>
+			   </list>
+			  </property>
+		</bean>
 </beans>
