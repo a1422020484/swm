@@ -13,6 +13,6 @@
 <title>饼状图 test</title>
 </head>
 <body>
-	<div id="containerPie" style="min-width:400px;height:400px"></div>
+	<div id="containerColumn" style="min-width:400px;height:400px"></div>
 </body>
 </html>

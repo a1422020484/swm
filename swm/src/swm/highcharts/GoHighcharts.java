@@ -7,8 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/highcharts")
 public class GoHighcharts {
 
+	@RequestMapping("/toHcIndex")
+	public String toHcIndex(){
+		return "highcharts/index";
+	}
 	@RequestMapping("/toPie")
 	public String pieTest(){
 		return "highcharts/pie";
+	}
+	@RequestMapping("/toLine")
+	public String lineTest(){
+		return "highcharts/line";
+	}
+	@RequestMapping("/toColumn")
+	public String columnTest(){
+		return "highcharts/column";
 	}
 }
