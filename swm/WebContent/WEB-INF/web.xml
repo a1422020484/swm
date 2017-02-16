@@ -70,6 +70,41 @@
 		<filter-name>HelloWorldFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping> -->
+	
+	<filter>
+		<filter-name>filter1</filter-name>
+		<filter-class>swm.filter.Filter1</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>filter2</filter-name>
+		<filter-class>swm.filter.Filter2</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>filter3</filter-name>
+		<filter-class>swm.filter.Filter3</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter3</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>filter4</filter-name>
+		<filter-class>swm.filter.Filter4</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filter4</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
     
     
 	<welcome-file-list>

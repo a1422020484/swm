@@ -1,6 +1,9 @@
 package swm.javautil.map;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -16,7 +19,15 @@ public class HashMapTest {
 
 	@Test
 	public void hashMap(){
-		HashMap<String,String> hm = new HashMap<String,String>();
-		System.out.println(hm.size());
+		Map<String,String> hm = new HashMap<String,String>();
+		hm.put("1", "3");
+		hm.put("3", "3");
+		hm.put("2", "3");
+		hm.put("22", "3");
+		hm.put("11", "3");
+		hm.put("4", "3");
+		for(String strkey : hm.keySet()){
+			System.out.println(strkey +":"+hm.get(strkey));
+		}
 	}
 }
