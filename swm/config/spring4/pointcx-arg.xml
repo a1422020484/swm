@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd ">
+		<bean id="audience" class="swm.spring4.pointcxarg.Audience"></bean>
+		<bean id="perfor" class="swm.spring4.pointcxarg.Performance"></bean>
+			<aop:config>
+				<!-- <aop:aspectj-autoproxy> -->
+				<aop:aspect ref="audience">
+					<aop:pointcut expression="execution(* swm.spring4.pointcxarg.Performance.performance(..)) and args(name,age)" id="performance"/>
+					<!-- <aop:after method="afterCellPhones" pointcut-ref="performance" arg-names="intValue"/> -->
+					<!-- <aop:before method="silenceCellPhones" pointcut-ref="performance"/> -->
+					<aop:before method="beforeHandler" pointcut-ref="performance" arg-names="name,age"/>
+					
+				</aop:aspect>
+			</aop:config>
+		</beans>
