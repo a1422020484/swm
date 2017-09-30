@@ -1,5 +1,5 @@
 package swm.aopSleep.mindreader;
 
 public interface Thinker {
-	void thinkOfSomething(String thoughts);
+    void thinkOfSomething(String thoughts);
 }

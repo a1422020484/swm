@@ -5,11 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Client {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring/aop/spring-thinker.xml");
-		ThinkerImpl thinker = (ThinkerImpl)bf.getBean("thinker");
-		System.out.println(thinker);
-	}
-	
+    public static void main(String[] args) {
+	// TODO Auto-generated method stub
+	BeanFactory bf = new ClassPathXmlApplicationContext("spring/aop/spring-thinker.xml");
+	ThinkerImpl thinker = (ThinkerImpl) bf.getBean("thinker");
+	System.out.println(thinker.getThoughts());
+    }
+
 }
