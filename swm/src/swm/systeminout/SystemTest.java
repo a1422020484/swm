@@ -4,7 +4,10 @@ public class SystemTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("test");
+		final String a= "a";
+		final String b="b";
+		
+		System.out.println(a);
 	}
 
 }

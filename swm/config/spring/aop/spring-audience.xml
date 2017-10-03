@@ -24,9 +24,9 @@
 			<aop:aspect ref="audience">
 				<aop:pointcut expression="execution(* swm.aopSleep.autience.Performer.performer(..))" id="performance"/>
 				
-				<!-- <aop:before pointcut-ref="performance" method="takeSeats"/>
+				<!-- <aop:before pointcut-ref="performance" method="takeSeats"/>-->
 				<aop:after pointcut-ref="performance" method="applaud"/>
-				<aop:after-returning pointcut-ref="performance" method="takeSeatsHome"/> -->
+				<aop:after-returning pointcut-ref="performance" method="takeSeatsHome"/>
 				<!-- <aop:after-throwing pointcut-ref="performance" method=""/>
 				<aop:declare-parents types-matching="" implement-interface=""/> -->
 				<aop:around pointcut-ref="performance" method="watchPerformance"/>
