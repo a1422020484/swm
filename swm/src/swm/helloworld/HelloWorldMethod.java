@@ -10,7 +10,8 @@ public class HelloWorldMethod {
 	
 	@RequestMapping(value="/toMethodForm")
 	public String toMethodForm(){
-		return "/method/methodForm";
+		String param = "123";
+		return "/method/methodForm?param="+param;
 	}
 	@RequestMapping(value="/doMethod",method = RequestMethod.GET)
 	public String toGetMethod(){

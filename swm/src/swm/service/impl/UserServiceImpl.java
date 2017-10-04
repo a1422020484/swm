@@ -14,20 +14,20 @@ import swm.service.UserService;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserMapper usermapper;
+    @Autowired
+    private UserMapper usermapper;
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		String username = usermapper.getUsername();
-		System.out.println("getUsername method");
-		return username;
-	}
+    @Override
+    public String getUsername() {
+	// TODO Auto-generated method stub
+	String username = usermapper.getUsername();
+	System.out.println("getUsername method");
+	return username;
+    }
 
-	@Override
-	public void saveUser(UserModel userModel) throws SQLException {
-		usermapper.saveUser(userModel);
-	}
+    @Override
+    public void saveUser(UserModel userModel) throws SQLException {
+	usermapper.saveUser(userModel);
+    }
 
 }

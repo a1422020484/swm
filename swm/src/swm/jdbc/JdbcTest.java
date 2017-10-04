@@ -11,35 +11,37 @@ public class JdbcTest {
 
 	// JDBC driver name and database URL
 	// Database credentials
-	static final String USER = "sa";
-	static final String PASS = "sa";
-	static final String DB_URL = "jdbc:oracle:thin:@172.17.6.48:1521:ORCL";
+	static final String USER = "root";
+	static final String PASS = "123456";
+//	static final String DB_URL_ORACLE = "jdbc:oracle:thin:@172.17.6.48:1521:ORCL";
+	static final String DB_URL_MYSQL = "jdbc:mysql://localhost:3306/goods?user=root&password=123456";
 
 	public static void main(String[] args) {
 		Connection conn = null;
 		Statement stmt = null;
 		try {
 			// STEP 2: Register JDBC driver
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 
 			// STEP 3: Open a connection
 			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL_MYSQL, USER, PASS);
 
 			// STEP 4: Execute a query
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 			String sql;
-			sql = "select t.username,t.address,t.phone,t.userid from t_user2 t";
+			sql = "select t.bid,t.author,t.press,t.bname from t_book t";
 			ResultSet rs = stmt.executeQuery(sql);
 
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
 				// Retrieve by column name
-				int id = rs.getInt("username");
-				int age = rs.getInt("address");
-				String first = rs.getString("phone");
-				String last = rs.getString("userid");
+				String id = rs.getString("bid");
+				String age = rs.getString("bname");
+				String first = rs.getString("author");
+				String last = rs.getString("press");
 
 				// Display values
 				System.out.print("USERNAME: " + id);
